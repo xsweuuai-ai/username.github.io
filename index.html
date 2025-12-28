@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Phoenix Panel</title>
+<style>
+  body {
+    background:#0a0a0a;
+    font-family: Arial, sans-serif;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+  }
+
+  .panel {
+    width:330px;
+    background:linear-gradient(180deg,#300000,#120000);
+    border:2px solid #ff2a2a;
+    border-radius:14px;
+    box-shadow:0 0 30px rgba(255,0,0,.45);
+    padding:16px;
+  }
+
+  h1 {
+    text-align:center;
+    color:#ff3b3b;
+    margin-bottom:14px;
+  }
+
+  .item {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,0,0,.1);
+    padding:9px 12px;
+    border-radius:10px;
+    margin-bottom:8px;
+    font-size:14px;
+  }
+
+  .toggle {
+    width:44px;
+    height:22px;
+    background:#500;
+    border-radius:11px;
+    position:relative;
+    cursor:pointer;
+    transition:.25s;
+  }
+
+  .toggle::after {
+    content:'';
+    width:18px;
+    height:18px;
+    background:#ff2a2a;
+    border-radius:50%;
+    position:absolute;
+    top:2px;
+    left:2px;
+    transition:.25s;
+  }
+
+  .toggle.active {
+    background:#ff2a2a;
+  }
+
+  .toggle.active::after {
+    left:24px;
+    background:#fff;
+  }
+
+  /* Lock */
+  #lock {
+    text-align:center;
+  }
+
+  input {
+    width:100%;
+    padding:8px;
+    border-radius:6px;
+    border:none;
+    margin-top:10px;
+  }
+
+  button {
+    width:100%;
+    margin-top:10px;
+    padding:8px;
+    background:#ff2a2a;
+    border:none;
+    border-radius:6px;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="panel" id="lock">
+  <h1>Phoenix Panel</h1>
+  <p>กรอกรหัสเพื่อเข้าเมนู</p>
+  <input type="password" id="pwd" placeholder="Password">
+  <button onclick="unlock()">เข้าสู่ระบบ</button>
+</div>
+
+<div class="panel" id="menu" style="display:none;">
+  <h1>Phoenix Panel</h1>
+
+  <div class="item"><span>ดูดหัวเดิมพัน</span><div class="toggle"></div></div>
+  <div class="item"><span>ดูด100%</span><div class="toggle"></div></div>
+  <div class="item"><span>ดูด90%</span><div class="toggle"></div></div>
+  <div class="item"><span>ดูดHS AIM</span><div class="toggle"></div></div>
+  <div class="item"><span>ช่วยดูดหัวแบบ XY</span><div class="toggle"></div></div>
+  <div class="item"><span>BYPASS AUTO</span><div class="toggle"></div></div>
+</div>
+
+<script>
+  const PASSWORD = "พ่อมึงตายไอควาย"; // demo UI only
+
+  function unlock(){
+    if(document.getElementById("pwd").value === PASSWORD){
+      document.getElementById("lock").style.display="none";
+      document.getElementById("menu").style.display="block";
+    } else {
+      alert("รหัสไม่ถูกต้อง");
+    }
+  }
+
+  document.querySelectorAll('.toggle').forEach(t=>{
+    t.onclick = ()=>t.classList.toggle('active');
+  });
+</script>
+
+</body>
+</html>
